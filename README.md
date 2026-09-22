@@ -1,0 +1,2 @@
+# SpaGereltOd
+Laborator1
