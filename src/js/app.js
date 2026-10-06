@@ -1,8 +1,12 @@
-import { mountNavbar } from "./components/navbar.js";
+import { renderNavbar, initNavbar } from "./components/navbar.js";
 import { initRouter } from "./router.js";
 import { routes } from "./routes.js";
 
 const navbarRoot = document.getElementById("navbar");
-mountNavbar(navbarRoot);
+
+if (navbarRoot) {
+  navbarRoot.innerHTML = renderNavbar();
+  initNavbar();
+}
 
 initRouter(routes);
