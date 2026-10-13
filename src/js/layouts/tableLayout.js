@@ -22,6 +22,7 @@ export function renderTable({
           `
           : ""
       }
+
       ${
         rows.length
           ? `
@@ -31,6 +32,7 @@ export function renderTable({
                   ${columns.map((col) => `<th class="${col.thClass || ""}">${safeValue(col.label)}</th>`).join("")}
                 </tr>
               </thead>
+
               <tbody>
                 ${rows
                   .map(
@@ -38,8 +40,8 @@ export function renderTable({
                       <tr>
                         ${columns
                           .map((col) => {
-                            // col.render байвал тэр функцээр, үгүй бол энгийн утгаар зурна.
                             const value = typeof col.render === "function" ? col.render(row) : safeValue(row[col.key]);
+
                             return `<td class="${col.tdClass || ""}">${value}</td>`;
                           })
                           .join("")}
@@ -48,6 +50,7 @@ export function renderTable({
                   )
                   .join("")}
               </tbody>
+
               ${footer ? `<tfoot>${footer}</tfoot>` : ""}
             </table>
           `
