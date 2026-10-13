@@ -1,17 +1,17 @@
-
-function renderRowPlaceholder() {
-  return `
-        <button
-          type="button"
-          class="button is-small is-danger is-light remove-row-btn"
-          data-code="${escapeHtml(code)}"
-        >
-          ×
-        </button>
-      </td>
-    </tr>
-  `;
-}
+// ============================================================
+// IMPORTS
+// ------------------------------------------------------------
+// Энэ файлын эхэнд урьд байсан import мөрүүдээ ХЭВЭЭР НЬ үлдээнэ
+// (t, renderTable, escapeHtml, getFoodName, getFoodCode, getEnergy,
+//  getProtein, getFat, getCarbohydrate, getCalcium, getIron,
+//  getPhosphorus, getVitaminC, renderAgeOptions, renderGenderOptions,
+//  collectTotals, formatPercent, findFoodByCode,
+//  getRequirementByAgeGender, getAgeObject, getLocalizedValue,
+//  getRequirementAgeOptions, getNutrientRequirements ...)
+//
+// Дараах мөр ШИНЭЭР нэмэгдсэн (алдааг засна):
+import { renderCalculationInfo } from "./calculationInfo.js";
+// ============================================================
 
 function renderMacrosTable(selectedFoods = [], ageOptions = [], selectedAge = "", selectedGender = "") {
   return renderTable({
@@ -367,7 +367,7 @@ export async function updateRequirementSummary(container = document) {
   const reqIron = Number(requirement?.minerals?.["Iron (mg)"] ?? 0);
   const reqPhosphorus = Number(requirement?.minerals?.["Phosphorus (mg)"] ?? 0);
   const reqVitaminC = Number(requirement?.vitamins?.["Vitamin C (mg)"] ?? 0);
- 
+
   const ageObject = await getAgeObject(age);
   setText("#selected-age-micro", typeof ageObject === "object" ? getLocalizedValue(ageObject) : ageObject);
 
@@ -440,7 +440,6 @@ export async function refreshCalculationTable(nutritionData) {
   const currentAge = resultBox.querySelector("#requirement-age")?.value || "";
   const currentGender = resultBox.querySelector("#requirement-gender")?.value || "";
 
-  const infoHtml = renderCalculationInfo();
   const ageOptions = await getRequirementAgeOptions();
 
   resultBox.innerHTML = selectedFoods.length
