@@ -22931,6 +22931,7 @@ has-background-danger.is-hoverable:active {
 @media screen and (max-width: 768px) {
   .app-shell {
     display: block;
+    height: auto;
   }
   .app-mobile-sidebar {
     display: block;
